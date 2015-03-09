@@ -9,7 +9,7 @@ CSV.foreach('space_jams.csv', headers: true, header_converters: :symbol) do |row
   album = albums.find { |a| a.id == track[:album_id] }
   if album.nil?
     album = Album.new(track[:album_id], track[:album_name],
-                      track[:artists], track[:duration_ms].to_i)
+                      track[:artists])
     albums << album
   end
 

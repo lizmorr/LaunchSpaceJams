@@ -1,9 +1,8 @@
 class Album
-  def initialize (album_id, album_name, artists, duration_ms)
+  def initialize (album_id, album_name, artists)
     @album_id = album_id
     @album_name = album_name
     @artists = artists
-    @duration_ms = duration_ms
     @album_tracks = []
   end
 
@@ -12,7 +11,11 @@ class Album
   end
 
   def duration_min
-    (@duration_ms / 1000.0 / 60.0).round(2)
+    duration = 0
+    tracks.each do |track|
+      duration += track[:duration_ms].to_f / 1000 / 60
+    end
+    duration.round(2)
   end
 
   def tracks
